@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget minimumVersion="4.5">
+    <!--
+        Resistors - A special purpose calculator to decode the colored bands on
+        resistors (and small capacitors).
+        Copyright © 2004-2020 Dean Beedell and Harry Whitfield
+
+        This program is free software; you can redistribute it and/or modify it under
+        the terms of the GNU General Public License as published by the Free Software
+        Foundation; either version 2 of the License, or (at your option) any later
+        version.
+
+        This program is distributed in the hope that it will be useful, but WITHOUT ANY
+        WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+        PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License along with
+        this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
+        St, Fifth Floor, Boston, MA  02110-1301  USA
+
+        Resistors - version 3.0
+        25 April, 2020 Dean Beedell and Harry Whitfield
+        mailto:g6auc@arrl.net
+    -->
+
+    <about-box>
+        <image>Resources/About.png</image>
+        <about-text font="Helvetica Bold" size="14" hOffset="81" vOffset="125" color="#000000" data="resistors" />
+        <about-text font="Helvetica" size="12" hOffset="81" vOffset="140" color="#000000" data="harry whitfield" />
+        <about-text font="Helvetica" size="10" hOffset="81" vOffset="172" color="#000000" data="about window - ricky romero" />
+        <about-text font="Helvetica Bold" size="10" hOffset="81" vOffset="205" color="#000000" data="version" />
+        <about-version font="Helvetica Bold" size="10" hOffset="118" vOffset="205" color="#000000" />
+        <about-text font="Helvetica" size="10" hOffset="155" vOffset="205" color="#565b5f" data="© 2004-2020 dean beedell and harry whitfield" />
+    </about-box>
+
+    <!--action trigger ="onPreferencesChanged">
+        mBand = Number(preferences.bandsPref.value);
+        band = 1;
+        resValue.data = "";
+        buildVitality("", "#445663", "#445663", "#445663", "#445663");
+        resize();
+    </action-->
+
+    <action trigger ="onLoad">
+        include("Resources/Licence/Licence.js");
+        include("vitality.js");
+        include("Resistors.js");
+        startup();
+    </action>
+
+    <action trigger="onKeyDown">
+    <![CDATA[
+        if (system.event.keyCode === 116) {
+            if (debugFlg === 1) {
+                print("%KON-I-INFO, pressing F5 " + system.event.keyCode);
+            }
+            reloadWidget();
+        }
+        if (system.event.keyCode === 40) {
+            // right volume up
+            if (debugFlg === 1) {
+                print("%KON-I-INFO, pressing down key " + system.event.keyCode);
+            }
+        }
+    ]]>
+    </action>
+
+    <preference name="componentPref" title="Component Type:" type="popup"
+        description="Choose the type of component to be decoded."
+        defaultValue="Resistor">
+        <option>Resistor</option>
+        <option>Capacitor</option>
+    </preference>
+
+    <preference name="bandsPref" title="Number Of Bands:" type="popup"
+        description="Choose the number of bands used to encode the value of the component."
+        defaultValue="3">
+        <option>3</option>
+        <option>4</option>
+    </preference>
+
+    <preference name="internationalPref" title="International Notation" type="checkbox" defaultValue="0"
+        description="Check this box if component values are to be displayed in International Notation."
+    />
+
+	<preference name="componentImagePref" title="Show Component Image" type="checkbox" defaultValue="0"
+				description="Check this box if an image of the component is to be displayed."
+	/>
+
+    <preference hidden="true"
+        description="Check this box if you don't want to see the Licence Conditions again."
+        name="licenceHide" title="Don't Show Licence Again" defaultValue="0" type="checkbox"/>
+
+    <preference name="maxWidthPref">
+        <title>Widget Size</title>
+        <group>config</group>
+        <type>slider</type>
+        <minlength>20</minlength>
+        <maxlength>180</maxlength>
+        <ticks>17</ticks>
+        <ticklabel>20%</ticklabel>
+        <ticklabel>100%</ticklabel>
+        <ticklabel>180%</ticklabel>
+        <defaultValue>100</defaultValue>
+        <description>Changes the total size of the widget. Vary the percentage and the whole widget will alter in size.</description>
+    </preference>
+
+    <preference hidden="false" group="config"
+        description="This changes the direction of the mousewheel when used to control the resizing effect (CTRL+Mousewheel)."
+        name="MouseWheelPref" title="Mouse Scroll Wheel" defaultValue="up" type="popup">
+        <option>up</option>
+        <option>down</option>
+    </preference>
+    
+    <prefGroup name="development" order="8" icon="Resources/images/development-icon.png" title="Development"/>
+    <preference hidden="false" description="Turning on the debugging will provide extra information in the debug window. To obtain the debug window press SHIFT+CTRL simultaneously whilst right clicking on the Yahoo widget systray icon, then select debug from the drop down menu. You will need to restart the widget properly rather than doing a simple restart for debugging information to appear." name="debugflgPref" group="development" title="Debug:" defaultValue="1" type="popup">
+         <option>Debug OFF</option>
+         <optionValue>0</optionValue>
+         <option>Debug ON</option>
+         <optionValue>1</optionValue>
+     </preference>   
+    <preference hidden="false" description="Default command to run when the gauge receives a double-click. %SystemRoot%/system32/perfmon.exe" name="imageCmdPref" group="development" title="Double-Click command" defaultValue="%SystemRoot%/system32/perfmon.exe" type="text"/>
+    <preference hidden="false" description="Development ONLY: Enter your editor path here along with any command line switches required to open this widget in the editor. This function only operates if the widget has been unpacked and DEBUG is ON. " name="imageEditPref" group="development" title="Default Editor:" defaultValue="" type="text"/>
+    
+</widget>

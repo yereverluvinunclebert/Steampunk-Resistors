@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+<name>Resistors</name>
+<version>3.0</version>
+<image usage="dock" src="Resources/dock.png"/>
+<image usage="security" src="Resources/security.png"/>
+<author name="Dean Beedell and Harry Whifield"/>
+<copyright>(c) 2004-2020 Dean Beedell and Harry Whitfield</copyright>
+<description>A Widget to Decode Resistor Values</description>
+<platform minVersion="4.5"/>
+	<security>
+            <filesystem>full</filesystem>
+            <http>all</http>
+            <command>true</command>
+            <hotkey>true</hotkey>
+      	</security>
+</metadata>
