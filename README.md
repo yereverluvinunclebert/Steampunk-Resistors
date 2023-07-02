@@ -81,6 +81,7 @@ Wit these instructions you should be able to start Yahoo! Widgets and the
 menubar item should appear. Widgets can then be started from the menubar or by 
 double-clicking on the KON file in the usual way.
 
+![resistors01](https://github.com/yereverluvinunclebert/Steampunk-Resistors/assets/2788342/4e294c9a-74f8-4cad-91ba-b3163088e402)
 
 LICENCE AGREEMENTS:
 
